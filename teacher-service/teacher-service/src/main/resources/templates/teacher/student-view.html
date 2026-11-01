@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav>
+    <a href="/teacher-page/viewAll">Teachers</a>
+    <a href="/teacher-student-page">Students</a>
+</nav>
+
+<main>
+    <h1>Student Details</h1>
+
+    <div class="card">
+        <img class="large-photo"
+             th:src="@{/teacher-student-page/{id}/photo(id=${student.studentId})}"
+             alt="Student photo">
+
+        <p><strong>ID:</strong> <span th:text="${student.studentId}"></span></p>
+        <p><strong>Name:</strong> <span th:text="${student.name}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${student.email}"></span></p>
+        <p><strong>Phone:</strong> <span th:text="${student.phoneNumber}"></span></p>
+        <p><strong>Gender:</strong> <span th:text="${student.gender}"></span></p>
+        <p><strong>Date of Birth:</strong> <span th:text="${student.dateOfBirth}"></span></p>
+        <p><strong>Address:</strong> <span th:text="${student.address}"></span></p>
+        <p><strong>Guardian:</strong> <span th:text="${student.guardianName}"></span></p>
+        <p><strong>Guardian Phone:</strong> <span th:text="${student.guardianPhoneNumber}"></span></p>
+        <p><strong>Student Type:</strong> <span th:text="${student.studentType}"></span></p>
+        <p><strong>Semester Fees:</strong> <span th:text="${student.semFees}"></span></p>
+        <p><strong>Hosteler Fees:</strong> <span th:text="${student.hostelerFees}"></span></p>
+        <p><strong>Total Fees:</strong> <span th:text="${student.totalCalculatedFees}"></span></p>
+    </div>
+
+    <h2>Student Photo</h2>
+
+    <form th:action="@{/teacher-student-page/{id}/photo(id=${student.studentId})}"
+          method="post"
+          enctype="multipart/form-data">
+        <input type="file" name="photo" required>
+        <button type="submit">Upload / Replace Photo</button>
+    </form>
+
+    <p>
+        <a class="button"
+           th:href="@{/teacher-student-page/{id}/photo/delete(id=${student.studentId})}">
+            Delete Photo
+        </a>
+    </p>
+
+    <p>
+        <a class="button"
+           th:href="@{/teacher-student-page/edit/{id}(id=${student.studentId})}">
+            Edit Student
+        </a>
+
+        <a class="button"
+           th:href="@{/teacher-student-page/delete/{id}(id=${student.studentId})}"
+           onclick="return confirm('Delete this student?')">
+            Delete Student
+        </a>
+    </p>
+</main>
+
+</body>
+</html>

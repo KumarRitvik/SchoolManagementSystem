@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Search</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav>
+    <a href="/teacher-page/viewAll">Teachers</a>
+    <a href="/teacher-student-page">Students</a>
+</nav>
+
+<main>
+    <h1>Teacher Search Result</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Type</th>
+            <th>Salary</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="teacher : ${teachers}">
+            <td th:text="${teacher.teacherId}"></td>
+            <td th:text="${teacher.name}"></td>
+            <td th:text="${teacher.email}"></td>
+            <td th:text="${teacher.phoneNumber}"></td>
+            <td th:text="${teacher.teacherType}"></td>
+            <td th:text="${teacher.salary}"></td>
+            <td>
+                <a th:href="@{/teacher-page/view/{id}(id=${teacher.teacherId})}">
+                    View
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+</body>
+</html>

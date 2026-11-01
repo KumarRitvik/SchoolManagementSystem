@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${student.studentId == null ? 'Create Student' : 'Update Student'}"></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav>
+    <a href="/teacher-page/viewAll">Teachers</a>
+    <a href="/teacher-student-page">Students</a>
+</nav>
+
+<main>
+    <h1 th:text="${student.studentId == null ? 'Create Student' : 'Update Student'}"></h1>
+
+    <form th:action="${student.studentId == null}
+                    ? @{/teacher-student-page/create}
+                    : @{/teacher-student-page/update}"
+          method="post">
+
+        <input type="hidden" th:if="${student.studentId != null}"
+               name="studentId" th:value="${student.studentId}">
+
+        <label>Name</label>
+        <input type="text" name="name" th:value="${student.name}" required>
+
+        <label>Email</label>
+        <input type="email" name="email" th:value="${student.email}" required>
+
+        <label>Phone Number</label>
+        <input type="text" name="phoneNumber"
+               th:value="${student.phoneNumber}" required>
+
+        <label>Gender</label>
+        <input type="text" name="gender" th:value="${student.gender}"
+               placeholder="Use your Gender enum value">
+
+        <label>Date of Birth</label>
+        <input type="date" name="dateOfBirth"
+               th:value="${student.dateOfBirth}" required>
+
+        <label>Address</label>
+        <textarea name="address" required th:text="${student.address}"></textarea>
+
+        <label>Guardian Name</label>
+        <input type="text" name="guardianName"
+               th:value="${student.guardianName}" required>
+
+        <label>Guardian Phone</label>
+        <input type="text" name="guardianPhoneNumber"
+               th:value="${student.guardianPhoneNumber}" required>
+
+        <label>Student Type</label>
+        <input type="text" name="studentType"
+               th:value="${student.studentType}"
+               placeholder="Use your StudentType enum value"
+               required>
+
+        <label>Photo</label>
+        <input type="text" name="photo"
+               th:value="${student.photo}"
+               placeholder="Photo value">
+
+        <label>Semester Fees</label>
+        <input type="number" step="0.01" name="semFees"
+               th:value="${student.semFees}" required>
+
+        <label>Hosteler Fees</label>
+        <input type="number" step="0.01" name="hostelerFees"
+               th:value="${student.hostelerFees}" required>
+
+        <label>Total Calculated Fees</label>
+        <input type="number" step="0.01" name="totalCalculatedFees"
+               th:value="${student.totalCalculatedFees}" required>
+
+        <button type="submit"
+                th:text="${student.studentId == null ? 'Create Student' : 'Update Student'}">
+        </button>
+    </form>
+</main>
+
+</body>
+</html>

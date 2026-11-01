@@ -1,0 +1,10 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org"><head><title>Student Form</title><link rel="stylesheet" href="/style.css"></head><body><nav><a href="/student-page">Students</a></nav><main><h1 th:text="${student.studentId == null ? 'Create Student' : 'Update Student'}"></h1>
+<form th:action="${student.studentId == null ? '/student-page/create' : '/student-page/update'}" method="post" th:object="${student}">
+<input type="hidden" th:field="*{studentId}"><div class="grid">
+<div><label>Name</label><input th:field="*{name}" required></div><div><label>Email</label><input type="email" th:field="*{email}" required></div>
+<div><label>Phone Number</label><input th:field="*{phoneNumber}" required></div><div><label>Gender</label><select th:field="*{gender}" required><option value="">Select</option><option th:each="g:${genders}" th:value="${g}" th:text="${g}"></option></select></div>
+<div><label>Date of Birth</label><input type="date" th:field="*{dateOfBirth}" required></div><div><label>Student Type</label><select th:field="*{studentType}" required><option value="">Select</option><option th:each="t:${studentTypes}" th:value="${t}" th:text="${t}"></option></select></div>
+<div><label>Address</label><input th:field="*{address}" required></div><div><label>Guardian Name</label><input th:field="*{guardianName}" required></div>
+<div><label>Guardian Phone</label><input th:field="*{guardianPhoneNumber}" required></div><div><label>Photo value</label><input th:field="*{photo}" required></div>
+<div><label>Semester Fees</label><input type="number" step="0.01" th:field="*{semFees}" required></div><div><label>Hosteler Fees</label><input type="number" step="0.01" th:field="*{hostelerFees}" required></div>
+<div><label>Total Calculated Fees</label><input type="number" step="0.01" th:field="*{totalCalculatedFees}" required></div></div><button>Save</button></form></main></body></html>

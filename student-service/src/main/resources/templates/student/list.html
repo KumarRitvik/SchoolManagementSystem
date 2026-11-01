@@ -1,0 +1,12 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org"><head><title>Students</title><link rel="stylesheet" href="/style.css"></head>
+<body><nav><a href="/student-page">Students</a><a href="/enrollment-page">Enrollments</a><a href="/student-page/create">Create Student</a></nav>
+<main><h1>Students</h1>
+<form method="get" action="/student-page/search"><input name="name" placeholder="Search by name" th:value="${searchName}"><input type="hidden" name="page" value="0"><input type="hidden" name="size" value="10"><input type="hidden" name="sortBy" value="studentId"><input type="hidden" name="direction" value="asc"><button>Search</button></form>
+<table><thead><tr><th>ID</th><th>Photo</th><th>Name</th><th>Email</th><th>Phone</th><th>Gender</th><th>Type</th><th>Actions</th></tr></thead>
+<tbody><tr th:each="s:${students.content}"><td th:text="${s.studentId}"></td><td><img class="photo" th:src="@{/student-page/{id}/photo(id=${s.studentId})}" onerror="this.style.display='none'"></td><td th:text="${s.name}"></td><td th:text="${s.email}"></td><td th:text="${s.phoneNumber}"></td><td th:text="${s.gender}"></td><td th:text="${s.studentType}"></td>
+<td><a class="button" th:href="@{/student-page/view/{id}(id=${s.studentId})}">View</a><a class="button" th:href="@{/student-page/edit/{id}(id=${s.studentId})}">Edit</a><a class="button danger" th:href="@{/student-page/delete/{id}(id=${s.studentId})}" onclick="return confirm('Delete student?')">Delete</a></td></tr></tbody></table>
+<div class="pagination" th:if="${students.totalPages > 1}">
+<a class="button" th:if="${page > 0}" th:href="@{/student-page/viewAll(page=${page-1},size=${size},sortBy=${sortBy},direction=${direction})}">Previous</a>
+<span th:text="'Page '+(${page+1})+' of '+${students.totalPages}"></span>
+<a class="button" th:if="${page+1 < students.totalPages}" th:href="@{/student-page/viewAll(page=${page+1},size=${size},sortBy=${sortBy},direction=${direction})}">Next</a></div>
+</main></body></html>

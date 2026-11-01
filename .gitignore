@@ -1,0 +1,42 @@
+
+# Maven build directories
+**/target/
+**/build/
+
+# IntelliJ IDEA
+.idea/
+**/.idea/
+*.iml
+
+# Google OAuth credentials and tokens
+**/credentials.json
+**/*credentials*.json
+**/tokens/
+**/StoredCredential
+
+# Environment files
+.env
+.env.*
+!.env.example
+**/application-local.yml
+**/application-local.yaml
+
+# Kafka local data and binaries
+/kafka-data/
+/kafka_2.13-*/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Uploaded user files
+**/uploads/
+
+# Secrets and certificates
+*.pem
+*.key
+*.p12
+*.jks

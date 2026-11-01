@@ -1,0 +1,71 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+
+            - id: STUDENT-SERVICE #Unique identifier for the route
+
+              uri: lb://STUDENT-SERVICE #Destination, using service
+                                        #discovery and load balancing.
+                                        #lb:// tells Spring Cloud
+                                        #Gateway to use its load-balancing
+                                       #integration rather than treating the
+                                      #destination as a literal hostname.
+
+              predicates: #Conditions that must match before this
+                          #route is selected.
+
+                - Path=/students/** #Path=/students/**
+                                    #Matches the incoming request path
+
+
+            - id: TEACHER-SERVICE
+              uri: lb://TEACHER-SERVICE
+              predicates:
+                - Path=/teachers/**
+
+            - id: ACADEMIC-SERVICE
+              uri: lb://ACADEMIC-SERVICE
+              predicates:
+                - Path=/academic/**
+
+            - id: SMS-SERVICE
+              uri: lb://SMS-SERVICE
+              predicates:
+                - Path=/sms/**
+
+            - id: CALENDER-SERVICE
+              uri: lb://CALENDER-SERVICE
+              predicates:
+                - Path=/calendar/**
+
+            - id: USER-SERVICE
+              uri: lb://USER-SERVICE
+              predicates:
+                - Path=/auth/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoint:
+    gateway:
+      access: read-only
+
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+
+jwt:
+  secret: ${JWT_SECRET}

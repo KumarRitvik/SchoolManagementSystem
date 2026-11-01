@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher - Student Management</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav>
+    <a href="/teacher-page/viewAll">Teachers</a>
+    <a href="/teacher-student-page">Students</a>
+    <a href="/assignment-page">Assignments</a>
+</nav>
+
+<main>
+    <h1>Student Management</h1>
+
+    <div class="card">
+        <h2>View Student</h2>
+
+        <form method="get" action="/teacher-student-page/view">
+            <input type="number"
+                   name="studentId"
+                   placeholder="Enter Student ID"
+                   required>
+            <button type="submit">View Student</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>Create Student</h2>
+        <p>Create a new student through the Teacher Service.</p>
+        <a class="button" href="/teacher-student-page/create">
+            Create Student
+        </a>
+    </div>
+
+    <div class="card">
+        <h2>Available Student Operations</h2>
+
+        <ul>
+            <li>View student by ID</li>
+            <li>Create student</li>
+            <li>Update student</li>
+            <li>Delete student</li>
+            <li>Upload student photo</li>
+            <li>View student photo</li>
+            <li>Delete student photo</li>
+        </ul>
+    </div>
+</main>
+
+</body>
+</html>

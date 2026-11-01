@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: calender-service
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}
+
+google:
+  calendar:
+    credentials-path: ${GOOGLE_OAUTH_CREDENTIALS_PATH}
+    token-path: ${GOOGLE_OAUTH_TOKEN_PATH}

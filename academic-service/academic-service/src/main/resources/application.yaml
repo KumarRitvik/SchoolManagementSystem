@@ -1,0 +1,26 @@
+
+server:
+  port: ${SERVER_PORT:8083}
+
+spring:
+  application:
+    name: ACADEMIC-SERVICE
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/dev_school_academic_db}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}

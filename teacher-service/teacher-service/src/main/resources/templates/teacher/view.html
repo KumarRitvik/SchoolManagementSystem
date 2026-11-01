@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Details</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav>
+    <a href="/teacher-page/viewAll">Teachers</a>
+    <a href="/teacher-student-page">Students</a>
+</nav>
+
+<main>
+    <h1>Teacher Details</h1>
+
+    <div class="card">
+        <img class="large-photo"
+             th:src="@{/teacher-page/{id}/photo(id=${teacher.teacherId})}"
+             alt="Teacher photo">
+
+        <p><strong>ID:</strong> <span th:text="${teacher.teacherId}"></span></p>
+        <p><strong>Name:</strong> <span th:text="${teacher.name}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${teacher.email}"></span></p>
+        <p><strong>Phone:</strong> <span th:text="${teacher.phoneNumber}"></span></p>
+        <p><strong>Type:</strong> <span th:text="${teacher.teacherType}"></span></p>
+        <p><strong>Salary:</strong> <span th:text="${teacher.salary}"></span></p>
+    </div>
+
+    <h2>Teacher Photo</h2>
+
+    <form th:action="@{/teacher-page/{id}/photo(id=${teacher.teacherId})}"
+          method="post"
+          enctype="multipart/form-data">
+        <input type="file" name="photo" required>
+        <button type="submit">Upload / Replace Photo</button>
+    </form>
+
+    <p>
+        <a class="button"
+           th:href="@{/teacher-page/{id}/photo/delete(id=${teacher.teacherId})}">
+            Delete Photo
+        </a>
+    </p>
+
+    <p>
+        <a class="button"
+           th:href="@{/teacher-page/edit/{id}(id=${teacher.teacherId})}">
+            Edit Teacher
+        </a>
+
+        <a class="button"
+           th:href="@{/teacher-page/delete/{id}(id=${teacher.teacherId})}"
+           onclick="return confirm('Delete this teacher?')">
+            Delete Teacher
+        </a>
+    </p>
+
+    <hr>
+
+    <h2>Student Access</h2>
+
+    <form method="get" action="/teacher-student-page/view">
+        <input type="number" name="studentId" placeholder="Student ID" required>
+        <button type="submit">Open Student</button>
+    </form>
+
+    <p>
+        <a class="button" href="/teacher-student-page">
+            Open Student Management
+        </a>
+    </p>
+</main>
+
+</body>
+</html>
